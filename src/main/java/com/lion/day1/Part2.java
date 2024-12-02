@@ -10,9 +10,11 @@ import java.util.List;
 
 
 public class Part2 {
+    private static final String FILE_PATH = "src/main/java/com/lion/day1/input.txt";
+
     public static void main(String[] args) {
 
-        File file = new File("src/main/java/com/lion/day1/input.txt");
+        File file = new File(FILE_PATH);
 
         ArrayList<ArrayList<Integer>> lists = getSetsFromInputFile(file);
 
