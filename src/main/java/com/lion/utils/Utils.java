@@ -25,4 +25,19 @@ public class Utils {
 
         return inputs;
     }
+
+    public static Character[][] convertToMatrix(List<String> inputs){
+        Character[][] charMatrix = new Character[inputs.size()][inputs.get(1).length()];
+
+        System.out.println("Building matrix:");
+        for (int i = 0; i < inputs.size(); i++){
+            for (int j = 0; j < inputs.get(i).length(); j++){
+                charMatrix[i][j] = inputs.get(i).charAt(j);
+                System.out.print(charMatrix[i][j]);
+            }
+            System.out.println();
+        }
+
+        return charMatrix;
+    }
 }
