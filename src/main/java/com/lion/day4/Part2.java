@@ -1,11 +1,10 @@
 package com.lion.day4;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lion.utils.Utils.getStringsFromFile;
 
 public class Part2 {
     private static final String SAMPLE_PATH = "src/main/java/com/lion/day4/sample.txt";
@@ -21,25 +20,6 @@ public class Part2 {
 
         long result = processCharMatrix(charMatrix);
         System.out.printf("Found MAS cross %d times.", result);
-    }
-
-    private static List<String> getStringsFromFile(File file) {
-        List<String> inputs = new ArrayList<>();
-        String line;
-
-        try(
-                BufferedReader br = new BufferedReader(new FileReader(file))
-        ) {
-            while ((line = br.readLine()) != null) {
-                inputs.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
-        }
-
-        return  inputs;
-
     }
 
     private static Character[][] convertToMatrix(List<String> inputs){
