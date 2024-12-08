@@ -3,11 +3,12 @@ package com.lion.day4;
 import java.io.File;
 import java.util.List;
 
+import static com.lion.utils.Utils.convertToMatrix;
 import static com.lion.utils.Utils.getStringsFromFile;
 
 public class Part1 {
     private static final String SAMPLE_PATH = "src/main/java/com/lion/day4/sample.txt";
-    private static final String INPUT_PATH = "src/main/java/com/lion/day4/input.txt";
+    private static final String INPUT_PATH = "src/main/java/com/lion/day4/input.txt.txt";
 
     public static void main(String[] args) {
         //File file = new File(SAMPLE_PATH);
@@ -19,21 +20,6 @@ public class Part1 {
 
         long result = processCharMatrix(charMatrix);
         System.out.printf("Found XMAS word %d times.", result);
-    }
-
-    private static Character[][] convertToMatrix(List<String> inputs){
-        Character[][] charMatrix = new Character[inputs.size()][inputs.get(1).length()];
-
-        System.out.println("Building matrix:");
-        for (int i = 0; i < inputs.size(); i++){
-            for (int j = 0; j < inputs.get(i).length(); j++){
-                charMatrix[i][j] = inputs.get(i).charAt(j);
-                System.out.print(charMatrix[i][j]);
-            }
-            System.out.println();
-        }
-
-        return charMatrix;
     }
 
     private static long processCharMatrix(Character[][] charMatrix) {

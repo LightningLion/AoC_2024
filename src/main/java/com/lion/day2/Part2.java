@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Part2 {
-    private static final String FILE_PATH = "src/main/java/com/lion/day2/input.txt";
+    private static final String FILE_PATH = "src/main/java/com/lion/day2/input.txt.txt";
 
     public static void main(String[] args) {
         File file = new File(FILE_PATH);

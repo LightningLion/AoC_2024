@@ -10,7 +10,7 @@ import static com.lion.utils.Utils.getStringsFromFile;
 
 public class Part1 {
     private static final String SAMPLE_PATH = "src/main/java/com/lion/day3/sample.txt";
-    private static final String INPUT_PATH = "src/main/java/com/lion/day3/input.txt";
+    private static final String INPUT_PATH = "src/main/java/com/lion/day3/input.txt.txt";
     private static final String EXPRESSION = "mul\\((\\d+),(\\d+)\\)";
 
     public static void main(String[] args) {

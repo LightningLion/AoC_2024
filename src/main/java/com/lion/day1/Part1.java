@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class Part1 {
-    private static final String FILE_PATH = "src/main/java/com/lion/day1/input.txt";
+    private static final String FILE_PATH = "src/main/java/com/lion/day1/input.txt.txt";
 
     public static void main(String[] args) {
 

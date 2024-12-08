@@ -8,7 +8,7 @@ import static com.lion.utils.Utils.getStringsFromFile;
 
 public class Part2 {
     private static final String SAMPLE_PATH = "src/main/java/com/lion/day4/sample.txt";
-    private static final String INPUT_PATH = "src/main/java/com/lion/day4/input.txt";
+    private static final String INPUT_PATH = "src/main/java/com/lion/day4/input.txt.txt";
 
     public static void main(String[] args) {
         //File file = new File(SAMPLE_PATH);

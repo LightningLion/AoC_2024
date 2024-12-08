@@ -40,4 +40,14 @@ public class Utils {
 
         return charMatrix;
     }
+
+    public static void printMatrix(Character[][] matrix){
+        for (Character[] characters : matrix) {
+            for (int j = 0; j < matrix[0].length; j++) {
+                System.out.print(characters[j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 }

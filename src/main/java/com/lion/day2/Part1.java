@@ -24,7 +24,7 @@ public class Part1 {
         -Any two adjacent levels differ by at least one and at most three.
 
          */
-        File file = new File("src/main/java/com/lion/day2/input.txt");
+        File file = new File("src/main/java/com/lion/day2/input.txt.txt");
         List<List<Integer>> rawReports = getReportsFromFile(file);
 
         List<Report> reports = new ArrayList<>();
