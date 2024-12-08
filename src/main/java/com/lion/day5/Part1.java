@@ -1,11 +1,10 @@
 package com.lion.day5;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import static com.lion.utils.Utils.getStringsFromFile;
 
 public class Part1 {
     private static final String SAMPLE_RULES_PATH = "src/main/java/com/lion/day5/sample_rules.txt";
@@ -14,32 +13,67 @@ public class Part1 {
     private static final String INPUT_UPDATES_PATH = "src/main/java/com/lion/day5/input_updates.txt";
 
     public static void main(String[] args) {
-        File fileRules = new File(SAMPLE_RULES_PATH);
-        File fileUpdates = new File(INPUT_UPDATES_PATH);
         //File fileRules = new File(SAMPLE_RULES_PATH);
-        //File fileUpdates = new File(INPUT_UPDATES_PATH);
+        //File fileUpdates = new File(SAMPLE_UPDATES_PATH);
+        File fileRules = new File(INPUT_RULES_PATH);
+        File fileUpdates = new File(INPUT_UPDATES_PATH);
 
         List<String> inputsRules = getStringsFromFile(fileRules);
-        List<String> inputsUPdates = getStringsFromFile(fileUpdates);
+        List<OrderRule> rules = processInputRules(inputsRules);
+
+        List<String> inputsUpdates = getStringsFromFile(fileUpdates);
+        List<SafetyUpdate> updates = processInputUpdates(inputsUpdates, rules);
+
+        long middleSum = sumMiddleValues(updates);
+
+        System.out.printf("Accumulated middle value is: %d %n", middleSum);
+
+        System.out.println();
+
+
     }
 
-    private static List<String> getStringsFromFile(File file) {
-        List<String> inputs = new ArrayList<>();
-        String line;
+    private static List<OrderRule> processInputRules(List<String> inputsRules) {
+        List<OrderRule> rules = new ArrayList<>();
 
-        try(
-                BufferedReader br = new BufferedReader(new FileReader(file))
-        ) {
-            while ((line = br.readLine()) != null) {
-                inputs.add(line);
-            }
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-            throw new RuntimeException(e);
+        for (String s : inputsRules){
+            String[] numbers = s.split("\\|");
+            int number1 = Integer.parseInt(numbers[0]);
+            int number2 = Integer.parseInt(numbers[1]);
+
+            rules.add(new OrderRule(number1, number2));
         }
 
-        return  inputs;
+        return rules;
+    }
 
+    private static List<SafetyUpdate> processInputUpdates(List<String> inputsUpdates, List<OrderRule> rules) {
+        List<SafetyUpdate> updates = new ArrayList<>();
+
+        for (String s : inputsUpdates){
+            String[] strPages =s.split(",");
+            List<Integer> intPages = new ArrayList<>();
+            for (String page : strPages){
+                intPages.add(Integer.parseInt(page));
+            }
+
+            SafetyUpdate update = new SafetyUpdate(intPages);
+            update.processRules(rules);
+            updates.add(update);
+        }
+
+        return updates;
+    }
+
+    private static long sumMiddleValues(List<SafetyUpdate> updates) {
+        long sum = 0;
+        for (SafetyUpdate su : updates){
+            if (su.isValid()) {
+                sum += su.getMiddleValue();
+            }
+        }
+
+        return  sum;
     }
 
 }
