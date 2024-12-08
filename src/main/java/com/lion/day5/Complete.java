@@ -6,7 +6,7 @@ import java.util.List;
 
 import static com.lion.utils.Utils.getStringsFromFile;
 
-public class Part1 {
+public class Complete {
     private static final String SAMPLE_RULES_PATH = "src/main/java/com/lion/day5/sample_rules.txt";
     private static final String SAMPLE_UPDATES_PATH = "src/main/java/com/lion/day5/sample_updates.txt";
     private static final String INPUT_RULES_PATH = "src/main/java/com/lion/day5/input_rules.txt";
@@ -18,18 +18,35 @@ public class Part1 {
         File fileRules = new File(INPUT_RULES_PATH);
         File fileUpdates = new File(INPUT_UPDATES_PATH);
 
+        System.out.println("====================PART 1====================");
         List<String> inputsRules = getStringsFromFile(fileRules);
         List<OrderRule> rules = processInputRules(inputsRules);
 
         List<String> inputsUpdates = getStringsFromFile(fileUpdates);
         List<SafetyUpdate> updates = processInputUpdates(inputsUpdates, rules);
 
-        long middleSum = sumMiddleValues(updates);
+        long sumValidUpdates = sumMiddleValues(updates);
 
-        System.out.printf("Accumulated middle value is: %d %n", middleSum);
+        System.out.printf("Accumulated middle value of correct updates is: %d.%n", sumValidUpdates);
 
         System.out.println();
 
+        /*
+        ###################################################
+        #                    PART 2                       #
+        ###################################################
+         */
+
+        System.out.println("====================PART 2====================");
+        long sumInvalidUpdates = 0;
+        List<SafetyUpdate> incorrectUpdates = updates.stream().filter(u -> !u.isValid()).toList();
+
+        for (SafetyUpdate su : incorrectUpdates){
+            su.rearrange();
+            sumInvalidUpdates += su.getMiddleValue();
+        }
+
+        System.out.printf("Accumulated middle value of incorrect updates is: %d.%n", sumInvalidUpdates);
 
     }
 
